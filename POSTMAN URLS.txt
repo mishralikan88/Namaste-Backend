@@ -1,0 +1,40 @@
+https://www.youtube.com/watch?v=apGV9Kg7ics
+
+{
+    "title":"Task 1",
+    "description":"Sample description bla bla "
+}
+
+
+POSTMAN Experiment
+==========
+
+
+login the user first 
+------------------
+post - login 
+http://localhost:4000/users/login
+{"name":"amar",
+"email":"amar@pwc.com",
+"password":"password"
+}
+
+
+
+After login user should be able to see all his tasks stored in the database 
+below is the API 
+-----------------
+
+http://localhost:4000/tasks/mytasks
+get - get tasks based on a specific user
+
+
+adding new task
+--------------
+post
+http://localhost:4000/tasks/new
+
+{
+    "title": "Task1 title ",
+    "description": "pasha bhai is great"
+}

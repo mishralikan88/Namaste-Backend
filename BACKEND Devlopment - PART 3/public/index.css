@@ -1,0 +1,6 @@
+/* This file will be accessible in localhost:5000/index.css because this lies inside public which we have configured as static.
+This css file is a static file we have disclosed publicly to UI*/
+
+*{
+    margin: 0px;
+}

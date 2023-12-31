@@ -1,0 +1,6 @@
+MVC ARCHIETECTURE
+-----------------
+Data sent from UI- 
+View => Routes => controller => model 
+Data Receive in UI - 
+model => controller => Routes => view 

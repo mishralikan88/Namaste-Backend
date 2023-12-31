@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css" />
+    <title>Login</title>
+ 
+</head>
+<body>
+    <main>
+        <form method="post" action="/login"> 
+            <h1>Login Now</h1>
+            <input type="text" name="email" placeholder="email" value="<%= locals.email %>"/> 
+            <input type="password" name="password" placeholder="password"/>
+            <button type="submit">Log in</button>
+            <p class="error"><%= locals.message %></p> <!-- on login page laod, message is null so This line wont be shown.when message has some value this line will be shown.local does  the null check of message  -->
+        </form>
+    </main>
+</body>
+</html>
