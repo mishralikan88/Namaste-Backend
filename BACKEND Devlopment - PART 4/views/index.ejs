@@ -8,7 +8,7 @@
 </head>
 <body>
     <main>
-    <form method="post" action="/contact"> <!-- Default method is get and default action is action ="/"-->
+    <form method="post" action="/contact"> <!-- Default method is get and default action is action ="/",in get request of form submission the form values gets attached a s query strings.-->
         <h1>Contact Now</h1>
         <input type="text" name="name"id=""/> <!-- name is the json key that we are sending back to the API in POST call-->
         <input type="email" name="email"/>
@@ -22,3 +22,5 @@
 <!-- Fast Development Shortcuts
 Short cuts - input:text to create textbox , button:submit ->To create Button 
 -->
+
+<!-- In an HTML <form> tag, the action attribute defines which URL (or endpoint) the form data will be submitted to. You can think of it as the API path or route where the request is directed. -->

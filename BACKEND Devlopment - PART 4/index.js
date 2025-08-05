@@ -47,7 +47,7 @@ app.get("/", (req, res) => {
 // app.get("/add", (req, res) => {
 //   Message.create({ name: "Amar", email: "mishralikan88@gmail.com" }).then(() =>
 //     res.send("Nice")
-//   );
+c //   );
 // });
 
 // using async await version of the above API
