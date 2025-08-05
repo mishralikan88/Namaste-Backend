@@ -8,7 +8,7 @@ const publicPath = path.join(path.resolve(),"public")
 const middleware = express.static(publicPath) // making the directory or public folder static and this returns a middleware
 app.use(middleware) // app server using the middleware 
 
-app.set("view engine", "ejs"); // setting up server view engine
+app.set("view engine", "ejs"); // setting up server view engine ejs
 
 // app.get("/", (req, res) => {
 //   res.sendStatus(404)
