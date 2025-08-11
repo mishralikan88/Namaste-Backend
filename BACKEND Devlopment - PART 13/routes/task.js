@@ -6,7 +6,7 @@ const taskrouter = express.Router();
 
 taskrouter.post("/new", isAUthenticated, newTask); // login user should only add task .He has to be autheticated first.
 
-taskrouter.get("/mytasks", isAUthenticated, getMytasks); // get user Tasks
+taskrouter.get("/mytasks", isAUthenticated, getMytasks); // get user tasks
 
 taskrouter.route("/:id").put(isAUthenticated,updateTasks).delete(isAUthenticated,deleteTask)
 

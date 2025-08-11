@@ -13,13 +13,15 @@ config({
 
 connectDB(); // DB Connectivity
 
-app.use(express.json()); // using JSON middle ware to allow post requests . use this specifically before accessing routes.
+app.use(express.json()); // Using JSON middleware to parse request bodies for POST requests; place this before defining routes.
 
 app.use(cookieParser());
 
-app.use("/users", userRouter); //  using user router. setting up routing prefix for user route  as "/users" ,FULL URL PATH - app.js => routes => controller
+app.use("/users", userRouter); // Using userRouter with "/users" as the route prefix; full URL path flow: app.js → routes → controller
 
-app.use("/tasks", taskrouter); //  using user router. setting up routing prefix for user route  as "/users" ,FULL URL PATH - app.js => routes => controller
+
+app.use("/tasks", taskrouter); // Using taskrouter with "/tasks" as the route prefix; full URL path flow: app.js → routes → controller
+
 
 app.get("/", (req, res) => {
   // default localhost URL

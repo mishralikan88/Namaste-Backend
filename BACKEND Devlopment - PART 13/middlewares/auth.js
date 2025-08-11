@@ -13,7 +13,7 @@ export const isAUthenticated = async (req, res, next) => {
 
   const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
-  req.user = await User.findById(decoded._id); // once user gets login save the user related information in request object .why ? To make this request available to subsequent handler.
+  req.user = await User.findById(decoded._id); // Once user logs in, store user info in req object to make it available to subsequent handlers.
 
   next()
 };

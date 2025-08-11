@@ -6,7 +6,7 @@ export const newTask = async (req, res, next) => {
   const task = await Task.create({
     title,
     description,
-    user: req.user._id, // object auto converted to string
+    user: req.user._id, // req.user._id (ObjectId) will be automatically typecast to match the schema field type(user type(string) from D:\Backend\Namaste-Backend\BACKEND Devlopment - PART 13\models\task.js) when saving in Mongoose.
   });
   res.status(201).json({
     success: true,

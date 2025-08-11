@@ -4,31 +4,10 @@ import { sendcookie } from "../utils/features.js";
 
 export const getAllUsers = async (req, res) => {};
 
-export const login = async (req, res) => {
-  const { email, password } = req.body;
-  const user = await User.findOne({ email }).select("+password");
-  if (!user) {
-    res.status(404).json({
-      success: false,
-      message: "Invalid Email or password",
-    });
-  } else {
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      res.status(404).json({
-        success: false,
-        message: "Invalid Email or password",
-      });
-    } else {
-      sendcookie(user, res, `Welcome back ${user.name}`, 200);
-    }
-  }
-};
-
 export const register = async (req, res) => {
   const { name, email, password } = req.body;
   let user = await User.findOne({ email });
-  if (user) {
+  if (user) {   // If user exists in db, show error.
     res.status(404).json({ 
       success: false,
       message: "User Already Exist",
@@ -45,8 +24,29 @@ export const getMyProfile = async (req, res) => {
     success: true,
     user: req.user,
   });
+};
 
-  // const id = "myid";
+export const login = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne({ email }).select("+password");
+  // If user does not esist in db.
+  if (!user) {
+    res.status(404).json({
+      success: false,
+      message: "Invalid Email or password",
+    });
+  } else {
+    // If user exists in db but password is incorrect.
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      res.status(404).json({
+        success: false,
+        message: "Invalid Email or password",
+      });
+    } else {
+      sendcookie(user, res, `Welcome back ${user.name}`, 200);
+    }
+  }
 };
 
 export const logout = (req, res) => {

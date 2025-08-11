@@ -13,8 +13,6 @@ const userRouter = express.Router(); // creating a user router
 
 userRouter.get("/all", getAllUsers); // READ USERS API
 
-
-
 userRouter.post("/new", register); // CREATE/REGISTER USER API
 
 userRouter.get("/me",isAUthenticated, getMyProfile); // GET USER ID API
