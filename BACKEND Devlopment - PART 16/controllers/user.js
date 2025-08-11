@@ -27,7 +27,6 @@ export const getAllUsers = async (req, res) => {};
 
 // Get userProfile
 export const getMyProfile = async (req, res) => {
-  // No need of try catch as no await is bein used inside the function.We dont have to wait for promise to be resolved as we are not using promise at all.
   res.status(200).json({
     success: true,
     user: req.user,
