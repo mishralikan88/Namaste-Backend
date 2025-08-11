@@ -3,7 +3,7 @@ import path from "path";
 import mongoose from "mongoose";
 import cookieParser from "cookie-parser";
 import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt"
+import bcrypt from "bcrypt";
 
 // DB Connectivity
 mongoose
@@ -19,7 +19,7 @@ mongoose
 const userSchema = new mongoose.Schema({
   name: String,
   email: String,
-  password:String
+  password: String,
 });
 
 // DB Model creating
@@ -60,12 +60,10 @@ app.get("/", isAuthenticated, (req, res) => {
   res.render("logout", { name: req.user.name });
 });
 
-
 // register API
 
 app.get("/register", (req, res) => {
   res.render("register");
-  
 });
 
 app.post("/register", async (req, res) => {
@@ -79,8 +77,15 @@ app.post("/register", async (req, res) => {
   }
   // If user does not exist in DB , create one in DB
   else {
-    const hashedPassword =  await bcrypt.hash(password,10) // 10 = password strength
-    user = await User.create({ name, email,password:hashedPassword});
+    const hashedPassword = await bcrypt.hash(password, 10); // 10 = password strength
+
+    // How does bcrypt.hash() work ?
+    // 1️⃣ Take your password (plaintext).
+    // 2️⃣ Create a random salt.
+    // 3️⃣ Hash the password + salt 10 rounds (cost factor).
+    // 4️⃣ Return one string containing version + cost + salt + hash.
+
+    user = await User.create({ name, email, password: hashedPassword });
     const token = jwt.sign({ _id: user._id }, "SecretKey");
     console.log(`Token => ${token}`);
 
@@ -92,12 +97,11 @@ app.post("/register", async (req, res) => {
   }
 });
 
-
 // login API
 
-app.get("/login",(req,res)=>{
-  res.render("login")
-})
+app.get("/login", (req, res) => {
+  res.render("login");
+});
 
 app.post("/login", async (req, res) => {
   const { email, password } = req.body;
@@ -106,18 +110,24 @@ app.post("/login", async (req, res) => {
   if (!user) {
     res.redirect("/register");
   }
-  
 
   // const ispasswordMatched = user?.password === password;
-  const ispasswordMatched = await bcrypt.compare(password,user?.password);
+  const ispasswordMatched = await bcrypt.compare(password, user?.password);
 
+  // How bcrypt.compare() works:
+
+  // 1️⃣ Take the entered password (plaintext).
+  // 2️⃣ Read the salt & cost factor from the stored hash in the DB.
+  // 3️⃣ Rehash the entered password using that same salt & cost factor.
+  // 4️⃣ Compare the new hash with the stored hash.
+  // 5️⃣ If they match → ✅ password correct, else → ❌ incorrect.
 
   // If logged in users password stored in DB is not same as user password in the form the land on login page showing some messages.
   if (!ispasswordMatched) {
-    res.render("login", {email,message: "Incorrect password" });
+    res.render("login", { email, message: "Incorrect password" });
   }
   // If passwords matched
-  else{
+  else {
     const token = jwt.sign({ _id: user._id }, "SecretKey");
     console.log(`Token => ${token}`);
 
@@ -126,7 +136,6 @@ app.post("/login", async (req, res) => {
       expires: new Date(Date.now() + 60 * 1000),
     });
     res.redirect("/");
-
   }
 });
 
