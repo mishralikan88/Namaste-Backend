@@ -28,5 +28,6 @@ app.get("/", (req, res) => {
 
 app.listen(process.env.PORT, () => console.log("server is working"));
 
-// using error middleware
-app.use(errorMiddleWare);
+app.use(errorMiddleWare); // using error middleware
+
+// app.use(errorMiddleWare) must be placed last so it can catch errors from all preceding routes and middleware.
