@@ -2,7 +2,7 @@
 import express from "express";
 import path from "path"
 
-const app = express(); // created an app server using express
+const app = express(); // app is not the server - It's just an Express application instance. 
 
 const publicPath = path.join(path.resolve(),"public")
 const middleware = express.static(publicPath) // making the directory or public folder static and this returns a middleware
@@ -38,3 +38,4 @@ app.listen(5000, () => {
   // listening the app server on 5000 port
   console.log("Server is working!!");
 });
+// This creates the server.Under the hood: http.createServer(app) → starts listening on port 3000.
