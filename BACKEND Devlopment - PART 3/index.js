@@ -39,3 +39,9 @@ app.listen(5000, () => {
   console.log("Server is working!!");
 });
 // This creates the server.Under the hood: http.createServer(app) → starts listening on port 3000.
+
+
+// app.listen(...) is basically a shortcut for:
+// const http = require("http");                  // Import Node's HTTP module
+// const server = http.createServer(app);         // Create an HTTP server using the Express app as the request handler
+// return server.listen(...);                     // Start the server on the given port
